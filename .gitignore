@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Python Virtual Environments
+.venv/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# OS metadata
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+.vite/
