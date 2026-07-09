@@ -1,30 +1,20 @@
 # 🌟 Xebia LMS 2.0 — Enterprise Capability Platform
 
 <p align="center">
-
-<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/🚀_Live_Demo-Xebia_LMS_2.0-6C1D5F?style=for-the-badge" alt="Live Demo">
-</a>
-
-<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/Status-Production_Ready-10B981?style=for-the-badge" alt="Production Ready">
-</a>
-
-<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/Platform-Enterprise_LMS-7C3AED?style=for-the-badge" alt="Enterprise LMS">
-</a>
-
+...
 </p>
 
-<div align="center">
+<h2 align="center">🌐 Live Experience</h2>
 
-## 🌐 Live Experience
+<p align="center">
+<b>Experience the complete Xebia LMS 2.0 platform online</b>
+</p>
 
-**Experience the complete Xebia LMS 2.0 platform online**
-
-### **🔗 https://xebia-lms-seven.vercel.app/**
-
-</div>
+<p align="center">
+<a href="https://xebia-lms-seven.vercel.app/">
+🔗 https://xebia-lms-seven.vercel.app/
+</a>
+</p>
 ---
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0.7-646CFF?logo=vite&style=for-the-badge)](https://vitejs.dev/)
