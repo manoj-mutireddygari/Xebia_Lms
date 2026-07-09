@@ -1,5 +1,25 @@
 # 🌟 Xebia LMS 2.0 — Enterprise Capability Platform
 
+<p align="center">
+
+<a href="https://your-lms-url.com" target="_blank">
+  <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Website-6C1D5F?style=for-the-badge" />
+</a>
+
+<a href="https://your-lms-url.com" target="_blank">
+  <img src="https://img.shields.io/badge/🚀_Production-Live-success?style=for-the-badge" />
+</a>
+
+<a href="https://github.com/your-username/your-repository" target="_blank">
+  <img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github&style=for-the-badge" />
+</a>
+
+</p>
+
+**🌐 Live Application:**  
+https://your-lms-url.com
+
+---
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0.7-646CFF?logo=vite&style=for-the-badge)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-3178C6?logo=typescript&logoColor=white&style=for-the-badge)](https://www.typescriptlang.org/)
