@@ -26,34 +26,6 @@
 
 ---
 
-<p align="center">
-
-<a href="https://react.dev/">
-<img src="https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react&logoColor=black&style=for-the-badge"/>
-</a>
-
-<a href="https://vitejs.dev/">
-<img src="https://img.shields.io/badge/Vite-6.0.7-646CFF?logo=vite&style=for-the-badge"/>
-</a>
-
-<a href="https://www.typescriptlang.org/">
-<img src="https://img.shields.io/badge/TypeScript-5.7.2-3178C6?logo=typescript&logoColor=white&style=for-the-badge"/>
-</a>
-
-<a href="https://gsap.com/">
-<img src="https://img.shields.io/badge/GSAP-3.12.5-88CE02?style=for-the-badge"/>
-</a>
-
-<a href="https://www.framer.com/motion/">
-<img src="https://img.shields.io/badge/Framer_Motion-11.15.0-F024B6?logo=framer&logoColor=white&style=for-the-badge"/>
-</a>
-
-<a href="https://github.com/darkroomengineering/lenis">
-<img src="https://img.shields.io/badge/Lenis-Smooth_Scroll-7C3AED?style=for-the-badge"/>
-</a>
-
-</p>
-
 > **Xebia LMS 2.0** is a next-generation educational operating system designed for enterprise capability growth. Moving away from traditional, flat course catalogs, this platform acts as a unified learning command center. It empowers learners, trainers, and leaders to analyze readiness, maintain learning momentum, manage capabilities, and identify the next best action.
 
 ---
