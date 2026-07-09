@@ -2,23 +2,29 @@
 
 <p align="center">
 
-<a href="https://your-lms-url.com" target="_blank">
-  <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Website-6C1D5F?style=for-the-badge" />
+<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/🚀_Live_Demo-Xebia_LMS_2.0-6C1D5F?style=for-the-badge" alt="Live Demo">
 </a>
 
-<a href="https://your-lms-url.com" target="_blank">
-  <img src="https://img.shields.io/badge/🚀_Production-Live-success?style=for-the-badge" />
+<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/Status-Production_Ready-10B981?style=for-the-badge" alt="Production Ready">
 </a>
 
-<a href="https://github.com/your-username/your-repository" target="_blank">
-  <img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github&style=for-the-badge" />
+<a href="https://xebia-lms-seven.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/Platform-Enterprise_LMS-7C3AED?style=for-the-badge" alt="Enterprise LMS">
 </a>
 
 </p>
 
-**🌐 Live Application:**  
-https://your-lms-url.com
+<div align="center">
 
+## 🌐 Live Experience
+
+**Experience the complete Xebia LMS 2.0 platform online**
+
+### **🔗 https://xebia-lms-seven.vercel.app/**
+
+</div>
 ---
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0.7-646CFF?logo=vite&style=for-the-badge)](https://vitejs.dev/)
