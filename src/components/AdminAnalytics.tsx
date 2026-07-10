@@ -119,7 +119,6 @@ export function AdminAnalyticsModule() {
               <PerformanceRow name="Rajesh Kumar" metric="92%" label="Attendance Rate" progress={92} color="var(--purple)" />
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -176,7 +175,6 @@ function PerformanceRow({ name, metric, label, progress, color }: { name: string
 // -------------------------------------------------------------
 // MOCK DATA
 // -------------------------------------------------------------
-
 const engagementData = [
   { date: "01 Jul", logins: 4200, attendance: 2800 },
   { date: "02 Jul", logins: 4800, attendance: 3100 },
@@ -187,7 +185,6 @@ const engagementData = [
   { date: "07 Jul", logins: 6500, attendance: 4900 },
   { date: "08 Jul", logins: 7200, attendance: 5500 },
 ];
-
 const categoryData = [
   { name: "Engineering", learners: 4500 },
   { name: "Design & UX", learners: 2100 },

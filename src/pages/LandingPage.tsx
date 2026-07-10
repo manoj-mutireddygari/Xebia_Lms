@@ -113,15 +113,21 @@ export function LandingPage({ navigate }: { navigate: (path: string) => void }) 
   const stRef = useRef<ScrollTrigger | undefined | null>(null);
 
   useEffect(() => {
+    if (reduceMotion) return;
+
     const lenis = new Lenis({ lerp: 0.08, wheelMultiplier: 0.92 });
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
     };
-    if (!reduceMotion) frame = requestAnimationFrame(raf);
+    gsap.ticker.add(updateLenis);
+
+    gsap.ticker.lagSmoothing(0);
+
     return () => {
-      cancelAnimationFrame(frame);
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
   }, [reduceMotion]);
@@ -1122,103 +1128,96 @@ function RoleOverview({
         // IMPORTANT: CSS uses visibility/display via .platform-stage-panel + .platform-preview-image.
         // To avoid cards/images staying invisible, we must drive visibility explicitly via GSAP.
         gsap.set(contentPanels, {
-          opacity: 0,
+          autoAlpha: 0,
           y: 24,
           pointerEvents: "none",
           force3D: true,
-          visibility: "hidden",
           zIndex: 0,
         });
 
         gsap.set(previewImages, {
-          opacity: 0,
+          autoAlpha: 0,
           scale: 1.04,
           filter: "blur(0px)",
           yPercent: 100,
           pointerEvents: "none",
           force3D: true,
           transformOrigin: "center center",
-          visibility: "hidden",
           zIndex: 0,
         });
 
         gsap.set(indicators, { color: "var(--muted)", scale: 1 });
 
         // Stage 0 (Student) visible before ScrollTrigger starts
-        gsap.set(contentPanels[0], { opacity: 1, y: 0, pointerEvents: "auto", visibility: "visible", zIndex: 2 });
-        gsap.set(previewImages[0], { opacity: 1, yPercent: 0, scale: 1, pointerEvents: "auto", visibility: "visible", zIndex: 2 });
+        gsap.set(contentPanels[0], { autoAlpha: 1, y: 0, pointerEvents: "auto", zIndex: 2 });
+        gsap.set(previewImages[0], { autoAlpha: 1, yPercent: 0, scale: 1, pointerEvents: "auto", zIndex: 2 });
         gsap.set(indicators[0], { color: "#6C1D5F", scale: 1.05 });
 
         const tl = gsap.timeline({
-          defaults: { ease: "power2.out", force3D: true },
+          defaults: { ease: "none", force3D: true },
         });
 
-        const stageDur = 1 / 3;
+        // 1. Define proportional durations
+        const initialPause = 0.1; // Almost immediate start
+        const readTime = 0.2; // Time spent holding on a card while scrolling
+        const transitionTime = 0.3; // Time spent animating between cards
 
-        // Student -> Trainer
+        // 2. Student -> Trainer (Starts immediately)
         tl.to(
           previewImages[0],
-          {
-            opacity: 0.65,
-            scale: 0.98,
-            y: -30,
-            duration: 0.28,
-            pointerEvents: "none",
-            visibility: "hidden",
-            zIndex: 0,
-          },
-          stageDur,
+          { autoAlpha: 0, scale: 0.98, y: -30, duration: transitionTime, pointerEvents: "none", zIndex: 0 },
+          initialPause
         )
           .to(
             contentPanels[0],
-            { opacity: 0, y: -24, duration: 0.24, pointerEvents: "none", visibility: "hidden", zIndex: 0 },
-            stageDur,
+            { autoAlpha: 0, y: -24, duration: transitionTime, pointerEvents: "none", zIndex: 0 },
+            "<"
           )
-          .to(indicators[0], { color: "var(--muted)", scale: 1, duration: 0.16 }, stageDur)
+          .to(indicators[0], { color: "var(--muted)", scale: 1, duration: 0.2 }, "<")
+
+          // Bring in Trainer
           .to(
             previewImages[1],
-            { opacity: 1, yPercent: 0, scale: 1, duration: 0.28, pointerEvents: "auto", visibility: "visible", zIndex: 2 },
-            stageDur,
+            { autoAlpha: 1, yPercent: 0, scale: 1, duration: transitionTime, pointerEvents: "auto", zIndex: 2 },
+            "<0.1"
           )
-          .to(contentPanels[1], { opacity: 1, y: 0, duration: 0.24, pointerEvents: "auto", visibility: "visible", zIndex: 2 }, stageDur)
-          .to(indicators[1], { color: "#6C1D5F", scale: 1.05, duration: 0.16 }, stageDur);
+          .to(contentPanels[1], { autoAlpha: 1, y: 0, duration: transitionTime, pointerEvents: "auto", zIndex: 2 }, "<")
+          .to(indicators[1], { color: "#6C1D5F", scale: 1.05, duration: 0.2 }, "<");
 
-        // Trainer -> Admin
+        // 3. Trainer -> Admin (Starts after Trainer has had its 'readTime')
         tl.to(
           previewImages[1],
-          {
-            opacity: 0.65,
-            scale: 0.98,
-            y: -30,
-            duration: 0.28,
-            pointerEvents: "none",
-            visibility: "hidden",
-            zIndex: 0,
-          },
-          stageDur * 2,
+          { autoAlpha: 0, scale: 0.98, y: -30, duration: transitionTime, pointerEvents: "none", zIndex: 0 },
+          `+=${readTime}` // Adds the reading pause before animating out
         )
           .to(
             contentPanels[1],
-            { opacity: 0, y: -24, duration: 0.24, pointerEvents: "none", visibility: "hidden", zIndex: 0 },
-            stageDur * 2,
+            { autoAlpha: 0, y: -24, duration: transitionTime, pointerEvents: "none", zIndex: 0 },
+            "<"
           )
-          .to(indicators[1], { color: "var(--muted)", scale: 1, duration: 0.16 }, stageDur * 2)
+          .to(indicators[1], { color: "var(--muted)", scale: 1, duration: 0.2 }, "<")
+
+          // Bring in Admin
           .to(
             previewImages[2],
-            { opacity: 1, yPercent: 0, scale: 1, duration: 0.28, pointerEvents: "auto", visibility: "visible", zIndex: 2 },
-            stageDur * 2,
+            { autoAlpha: 1, yPercent: 0, scale: 1, duration: transitionTime, pointerEvents: "auto", zIndex: 2 },
+            "<0.1"
           )
-          .to(contentPanels[2], { opacity: 1, y: 0, duration: 0.24, pointerEvents: "auto", visibility: "visible", zIndex: 2 }, stageDur * 2)
-          .to(indicators[2], { color: "#6C1D5F", scale: 1.05, duration: 0.16 }, stageDur * 2);
+          .to(contentPanels[2], { autoAlpha: 1, y: 0, duration: transitionTime, pointerEvents: "auto", zIndex: 2 }, "<")
+          .to(indicators[2], { color: "#6C1D5F", scale: 1.05, duration: 0.2 }, "<");
+
+        // 4. CRITICAL: Add empty space at the end of the timeline
+        // This forces the Admin card to stay pinned on screen for the final third of the scroll.
+        tl.to({}, { duration: readTime });
 
         tlRef.current = tl;
 
         stRef.current = ScrollTrigger.create({
           trigger: section,
           start: "top top",
-          end: "+=300%", // exactly 3 viewport heights
+          end: "+=400%", // exactly 4 viewport heights
           pin: true,
-          scrub: 0.5,
+          scrub: true, // fix lenis conflict
           anticipatePin: 1,
           invalidateOnRefresh: true,
           pinSpacing: true,
@@ -1226,6 +1225,16 @@ function RoleOverview({
           fastScrollEnd: true,
           preventOverlaps: true,
           refreshPriority: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            let stage = 0;
+            if (progress >= 0.67) {
+              stage = 2;
+            } else if (progress >= 0.19) {
+              stage = 1;
+            }
+            setActiveStage(stage);
+          },
         });
 
         // Required: only after images loaded
@@ -1294,7 +1303,7 @@ function RoleOverview({
                 ref={(el) => {
                   contentRefs.current[index] = el;
                 }}
-                className={`platform-stage-panel ${index === 0 ? "is-active" : ""}`}
+                className="platform-stage-panel"
                 onMouseEnter={() => setActiveStage(index)}
               >
                 <span className="platform-stage-label">{stage.label}</span>
@@ -1315,7 +1324,7 @@ function RoleOverview({
                   indicatorRefs.current[index] = el;
                 }}
                 type="button"
-                className={`platform-indicator-item ${index === 0 ? "is-active" : ""}`}
+                className={`platform-indicator-item ${index === activeStage ? "is-active" : ""}`}
                 aria-current={index === activeStage ? "step" : undefined}
               >
                 <span className="platform-indicator-dot" aria-hidden="true" />
@@ -1333,7 +1342,7 @@ function RoleOverview({
                 ref={(el) => {
                   imageRefs.current[index] = el;
                 }}
-                className={`platform-preview-image ${index === 0 ? "is-active" : ""}`}
+                className="platform-preview-image"
                 src={stage.image}
                 alt={`${stage.title} preview`}
                 loading="eager"
@@ -1871,7 +1880,7 @@ function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newErrors = {
       name: "",
       email: "",
